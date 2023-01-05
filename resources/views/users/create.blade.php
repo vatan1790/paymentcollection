@@ -88,12 +88,7 @@
                                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control js-example-basic-single','required'=>'required')) !!}
                             </div>
                         </div>   
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <strong>Bussiness:</strong>
-                                {!! Form::select('business', $business,null, array('class' => 'form-control')) !!}
-                            </div>
-                        </div>    
+                       
                         {{-- <div class="col-md-3">
                             <div class="form-group">
                                 <strong>Status:</strong>

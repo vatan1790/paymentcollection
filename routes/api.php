@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('login', [RegisterController::class, 'login']);
+     
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('customers', CustomerController::class);
+    Route::post('/customers/{id}',[CustomerController::class,'update']);
 });

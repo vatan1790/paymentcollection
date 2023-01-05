@@ -270,7 +270,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">{{ number_format(DB::table('materials')->count()) }}</h3>
+                        <h3 class="dash-25">0</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-70p" role="progressbar"></div>
@@ -292,7 +292,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">{{ number_format(DB::table('invoices')->count()) }}</h3>
+                        <h3 class="dash-25">0</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-60p bg-secondary" role="progressbar"></div>
@@ -314,7 +314,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">{{ number_format(DB::table('vendors')->count()) }}</h3>
+                        <h3 class="dash-25">0</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-50p bg-success" role="progressbar"></div>
@@ -336,7 +336,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">{{ number_format(DB::table('brands')->count()) }}</h3>
+                        <h3 class="dash-25">0</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-40p bg-info" role="progressbar"></div>
@@ -358,7 +358,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">{{ number_format(DB::table('branches')->count()) }}</h3>
+                        <h3 class="dash-25">0</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-40p bg-info" role="progressbar"></div>

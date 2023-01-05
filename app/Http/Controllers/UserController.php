@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Hash;
 use App\Models\User;
+use App\Models\Customer;
 use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -32,9 +33,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        
-        $business = Business::where('status','=',1)->pluck('name', 'id')->all();
-        return view('users.create', compact('roles','business'));
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -70,8 +69,7 @@ class UserController extends Controller
         $post = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $post->roles->pluck('name', 'name')->all();
-        $business = Business::where('status','=',1)->pluck('name', 'id')->all();
-        return view('users.edit', compact('post', 'roles', 'userRole','business'));
+        return view('users.edit', compact('post', 'roles', 'userRole'));
     }
 
     
@@ -124,5 +122,20 @@ class UserController extends Controller
         
         User::where('id',$dt['id'])->update(array('status' => $status));
        
+    }
+
+  
+     public function customers(){      
+        return view('customer.index');
+     }
+     public function customerlist() {
+        $industry = Customer::get();
+        return datatables()->of($industry)
+                        ->editColumn('created_at', '{{ date("d-m-Y", strtotime($created_at)) }}')
+                       
+                        ->rawColumns([
+                            'business' => 'business',
+                        ])
+                        ->make(true);
     }
 }
