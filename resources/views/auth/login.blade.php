@@ -38,7 +38,8 @@
 		
 	</head>
 
-	<body>
+	<body  style="background-image: url('<?= url('public/assets/img/SK-bima-background.jpg'); ?>');background-repeat: no-repeat;
+    background-size: cover;">
 		<!-- Loader -->
 		<div id="global-loader">
 			<img src="{{ URL::to('/') }}/assets/img/loader.svg" class="loader-img" alt="Loader">
@@ -52,9 +53,9 @@
 			<!-- Row -->
 			<div class="row text-center pl-0 pr-0 ml-0 mr-0">
 				<div class="col-lg-3 d-block mx-auto">
-					<div class="text-center mb-2">
-						<img src="{{ URL::to('/') }}/assets/img/brand/logo.png" class="header-brand-img" alt="logo">
-						<img src="{{ URL::to('/') }}/assets/img/brand/logo-light.png" class="header-brand-img theme-logos" alt="logo">
+					<div class="text-center mb-2" style="text-align: left;">
+						<img src="{{ URL::to('/') }}/assets/img/brand/mobile-app-Logo2.png"     alt="logo">
+						<img src="{{ URL::to('/') }}/assets/img/brand/mobile-app-Logo2.png" class=" theme-logos" alt="logo">
 					</div>
 					<div class="card custom-card">
 						<div class="card-body">
@@ -90,11 +91,12 @@
 
 							</form>
 						
-							<div class="mt-3 text-center">
+							<!-- <div class="mt-3 text-center"> -->
 								@if (Route::has('password.request'))
-								<p class="mb-1"><a  href="{{ route('password.request') }}">Forgot password?</a></p>
+								<br>
+								<p class="mb-1" style="text-align: left;"><a  href="{{ route('password.request') }}">Forgot password?</a></p>
 								@endif
-							<p class="mb-0">Don't have an account? <a href="signup">Create an Account</a></p>
+							<!-- <p class="mb-0">Don't have an account? <a href="signup">Create an Account</a></p> -->
 						</div>
 						</div>
 					</div>

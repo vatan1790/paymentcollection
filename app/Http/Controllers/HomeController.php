@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\State;
 use App\Models\Cities;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $agentlist = User::where('type','agent')->get();
+        return view('home',compact('agentlist'));
     }
 
 

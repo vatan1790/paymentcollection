@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Sales Dashboard</li>
             </ol>
         </div>
-        <div class="d-flex">
+       <!--  <div class="d-flex">
             <div class="mr-2">
                 <a class="btn ripple btn-outline-primary dropdown-toggle mb-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fe fe-external-link"></i> Export <i class="fas fa-caret-down ml-1"></i>
@@ -27,7 +27,7 @@
                     <i class="fe fe-filter mr-1"></i>  Filter <i class="fas fa-caret-down ml-1"></i>
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End Page Header -->
 
@@ -36,6 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="advanced-search">
                 <div class="row align-items-center">
+                    
                     <div class="col-md-4">
                         <div class="row">
                             <div class="col-md-6">
@@ -260,17 +261,19 @@
     </div>
     <!--End Navbar -->
     <div class="row row-sm">
+     
+                   
         <div class="col-sm-6 col-xl-3 col-lg-6">
             <div class="card custom-card">
                 <div class="card-body dash1">
                     <div class="d-flex">
-                        <p class="mb-1 tx-inverse">Total Material</p>
+                        <p class="mb-1 tx-inverse">Total Agent</p>
                         <div class="ml-auto">
                             <i class="fas fa-chart-line fs-20 text-primary"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">0</h3>
+                        <h3 class="dash-25">{{ DB::table('users')->where('type','agent')->count()}}</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-70p" role="progressbar"></div>
@@ -286,13 +289,13 @@
             <div class="card custom-card">
                 <div class="card-body dash1">
                     <div class="d-flex">
-                        <p class="mb-1 tx-inverse">Total Invoice</p>
+                        <p class="mb-1 tx-inverse">Total Cutomer</p>
                         <div class="ml-auto">
                             <i class="fab fa-rev fs-20 text-secondary"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">0</h3>
+                        <h3 class="dash-25">{{ DB::table('users')->where('type','user')->count()}}</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-60p bg-secondary" role="progressbar"></div>
@@ -308,13 +311,13 @@
             <div class="card custom-card">
                 <div class="card-body dash1">
                     <div class="d-flex">
-                        <p class="mb-1 tx-inverse">Total Vendors</p>
+                        <p class="mb-1 tx-inverse">Total Collection </p>
                         <div class="ml-auto">
                             <i class="fas fa-dollar-sign fs-20 text-success"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="dash-25">0</h3>
+                        <h3 class="dash-25">{{ number_format(DB::table('payments')->sum('amount'),2)}}</h3>
                     </div>
                     <div class="progress mb-1">
                         <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-50p bg-success" role="progressbar"></div>
@@ -326,53 +329,73 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-3 col-lg-6">
-            <div class="card custom-card">
-                <div class="card-body dash1">
-                    <div class="d-flex">
-                        <p class="mb-1 tx-inverse">Total Brands</p>
-                        <div class="ml-auto">
-                            <i class="fas fa-signal fs-20 text-info"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="dash-25">0</h3>
-                    </div>
-                    <div class="progress mb-1">
-                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-40p bg-info" role="progressbar"></div>
-                    </div>
-                    <!-- <div class="expansion-label d-flex text-muted">
-                        <span class="text-muted">Last Month</span>
-                        <span class="ml-auto"><i class="fas fa-caret-up mr-1 text-success"></i>0.9%</span>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3 col-lg-6">
-            <div class="card custom-card">
-                <div class="card-body dash1">
-                    <div class="d-flex">
-                        <p class="mb-1 tx-inverse">Total Branches</p>
-                        <div class="ml-auto">
-                            <i class="fas fa-signal fs-20 text-info"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="dash-25">0</h3>
-                    </div>
-                    <div class="progress mb-1">
-                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-40p bg-info" role="progressbar"></div>
-                    </div>
-                    <!-- <div class="expansion-label d-flex text-muted">
-                        <span class="text-muted">Last Month</span>
-                        <span class="ml-auto"><i class="fas fa-caret-up mr-1 text-success"></i>0.9%</span>
-                    </div> -->
-                </div>
-            </div>
-        </div>
     </div>
+    <div class="row row-sm">
+   
+        @if($agentlist)
+        @foreach($agentlist as $agent)
+        <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="card custom-card">
+                <div class="card-body dash1">
+                    <div class="d-flex">
+                        <p class="mb-1 tx-inverse">Daily Collection By Agent {{$agent->name}}</p>
+                        <div class="ml-auto">
+                            <i class="fas fa-user fs-20 text-primary"></i>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="dash-25">{{ number_format(DB::table('payments')->where(array('payment_date'=>date('Y-m-d'),'user_id'=>$agent->id))->sum('amount'),2)}}</h3>
+                    </div>
+                    <div class="progress mb-1">
+                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-70p" role="progressbar"></div>
+                    </div>
+                   <!--  <div class="expansion-label d-flex">
+                        <span class="text-muted">Last Month</span>
+                        <span class="ml-auto"><i class="fas fa-caret-up mr-1 text-success"></i>0.7%</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @endif
+       
+    </div>
+
+     <div class="row row-sm">
+   
+        @if($agentlist)
+        @foreach($agentlist as $agent)
+        <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="card custom-card">
+                <div class="card-body dash1">
+                    <div class="d-flex">
+                        <p class="mb-1 tx-inverse">Monthly Collection By Agent {{$agent->name}}</p>
+                        <div class="ml-auto">
+                            <i class="fas fa-user fs-20 text-primary"></i>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="dash-25">{{ number_format(DB::table('payments')->where('payment_date','>=',date('Y-m-d',strtotime('01-'.date('m-Y'))))->where('payment_date','<=',date('Y-m-d',strtotime('31-'.date('m-Y') )))->where('user_id',$agent->id)->sum('amount'),2)}}</h3>
+                    </div>
+                    <div class="progress mb-1">
+                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-70p" role="progressbar"></div>
+                    </div>
+                   <!--  <div class="expansion-label d-flex">
+                        <span class="text-muted">Last Month</span>
+                        <span class="ml-auto"><i class="fas fa-caret-up mr-1 text-success"></i>0.7%</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @endif
+       
+    </div>
+
     <!--End  Row -->
-    <div class="col-12 grid-margin stretch-card">
+    <!-- <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
               <div class="row">
@@ -391,7 +414,7 @@
         </div>
     </div>
 
-    </div>
+    </div> -->
 	
 
 @endsection

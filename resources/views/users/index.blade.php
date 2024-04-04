@@ -7,10 +7,10 @@
       <!-- Page Header -->
       <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Users</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Agent</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ URL::to('/') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Agent</li>
             </ol>
         </div>
         
@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <div>
                    
-                        <h6 class="card-title mb-1">Users</h6>
+                        <h6 class="card-title mb-1">Agent</h6>
                         @if (\Session::has('success'))
                             <div class="alert alert-success">
                                 <p>{{ \Session::get('success') }}</p>
@@ -32,7 +32,7 @@
                         @endif
                         
                             <span class="float-right">
-                                <a class="btn btn-primary" href="{{ route('users.create') }}">Create Users</a>
+                                <a class="btn btn-primary" href="{{ route('users.create') }}">Create Agent</a>
                             </span>
                         
                     </div>
@@ -44,8 +44,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Roles</th>
+                                <th>Contact</th>
+                                <th>Address</th>
                                 <th>Status</th>
                                 <th width="280px">Action</th>
                             </tr>
@@ -55,14 +55,8 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    @if(!empty($user->getRoleNames()))
-                                        @foreach($user->getRoleNames() as $val)
-                                            <label class="badge badge-dark">{{ $val }}</label>
-                                        @endforeach
-                                    @endif
-                                </td>
+                                <td>{{ $user->contact }}</td>
+                                <td>{{ $user->address }}</td>
                                 <td>
                                     @if($user->status == 1)
                                         <label class="switch">
@@ -77,17 +71,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <!-- <a class="btn btn-success" href="{{ route('users.show',$user->id) }}">Show</a> -->
+                                    <a class="btn btn-success" href="{{ route('users.show',$user->id) }}">View</a>
                                     <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                                    @can('user-edit')
-                                       
-                                
-                                        @endcan
-                                    @can('user-delete')
+                                   
                                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
